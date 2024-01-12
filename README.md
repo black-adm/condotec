@@ -1,7 +1,7 @@
 # Condotec - Gerenciamento de condomínios
 
 <div align="center">
-  <img src="/images/condotec-transparent-logo.png" alt="logo" width="240px" />
+  <img src="/images/condotec-transparent.png" alt="logo" width="240px" />
 </div>
 
 ## Entidades da aplicação
