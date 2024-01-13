@@ -4,12 +4,12 @@ import { RegisterFormComponent } from './register-form.component';
 
 const routes: Routes = [
   {
-    path: 'cadastro',
-    redirectTo: 'dados-pessoais',
+    path: 'cadastrar',
+    redirectTo: 'cadastrar/dados-pessoais',
     pathMatch: 'full'
   },
   {
-    path: 'cadastro',
+    path: 'cadastrar',
     component: RegisterFormComponent,
     children: [
       {

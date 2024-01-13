@@ -14,7 +14,7 @@ import { RegisterFormModule } from './register-form/register-form.module';
     BrowserModule,
     AppRoutingModule,
     LoginFormModule,
-    RegisterFormModule
+    RegisterFormModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
