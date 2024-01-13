@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent implements OnInit {
-  form: FormGroup
+  form!: FormGroup
 
   constructor(private formBuilder: FormBuilder) {}
 
