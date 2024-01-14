@@ -4,7 +4,7 @@
   <img src="/images/condotec-transparent.png" alt="logo" width="240px" />
 </div>
 <div align="center">
-  <img src="https://skillicons.dev/icons?i=typescript,angular,bootstrap,jest,cs,dotnet,mongodb,docker" />
+  <img src="https://skillicons.dev/icons?i=typescript,angular,tailwindcss,jest,cs,dotnet,mongodb,docker" />
 </div>
 
 ## Entidades da aplicação
