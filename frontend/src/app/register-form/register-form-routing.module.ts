@@ -5,13 +5,20 @@ import { RegisterFormComponent } from './register-form.component';
 const routes: Routes = [
   {
     path: 'cadastrar',
-    redirectTo: 'cadastrar/dados-pessoais',
+    redirectTo: 'cadastrar/credenciais',
     pathMatch: 'full'
   },
   {
     path: 'cadastrar',
     component: RegisterFormComponent,
     children: [
+      {
+        path: 'credenciais',
+        loadChildren: () =>
+          import('./credentials-form/credentials-form.module').then(
+            (module) => module.CredentialsFormModule
+          )
+      },
       {
         path: 'dados-pessoais',
         loadChildren: () =>
@@ -20,26 +27,12 @@ const routes: Routes = [
           )
       },
       {
-        path: 'dados-endereço',
+        path: 'dados-pessoais/endereco',
         loadChildren: () =>
           import('./address-form/address-form.module').then(
             (module) => module.AddressFormModule
           )
       },
-      {
-        path: 'dados-contato',
-        loadChildren: () =>
-          import('./personal-contact-form/personal-contact-form.module').then(
-            (module) => module.PersonalContactFormModule
-          )
-      },
-      {
-        path: 'credenciais-login',
-        loadChildren: () =>
-          import('./credentials-form/credentials-form.module').then(
-            (module) => module.CredentialsFormModule
-          )
-      }
     ]
   }
 ];

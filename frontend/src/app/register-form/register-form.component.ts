@@ -12,9 +12,16 @@ export class RegisterFormComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
+      credentials: this.formBuilder.group({
+        email: '',
+        username: '',
+        password: '',
+        passwordConfirmation: '',
+      }),
       personalData: this.formBuilder.group({
         firstName: '',
         lastName: '',
+        phone: '',
         cpf: '',
       }),
       address: this.formBuilder.group({
@@ -23,17 +30,12 @@ export class RegisterFormComponent implements OnInit {
         complement: '' || null,
         city: '',
         uf: '',
-      }),
-      personalContact: this.formBuilder.group({
-        email: '',
-        phone: '',
-      }),
-      credentials: this.formBuilder.group({
-        username: '',
-        password: '',
-        passwordConfirmation: '',
       })
     })
+  }
+
+  getCredentials(): FormGroup {
+    return this.form.get('credentials') as FormGroup
   }
 
   getPersonalData(): FormGroup {
@@ -42,12 +44,5 @@ export class RegisterFormComponent implements OnInit {
 
   getAddress(): FormGroup {
     return this.form.get('address') as FormGroup
-  }
-
-  getPersonalContact(): FormGroup {
-    return this.form.get('personalContact') as FormGroup
-  }
-  getCredentials(): FormGroup {
-    return this.form.get('credentials') as FormGroup
   }
 }
