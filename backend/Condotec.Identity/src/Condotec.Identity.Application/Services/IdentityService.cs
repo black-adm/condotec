@@ -19,8 +19,10 @@ namespace Condotec.Identity.Application.Services
         private readonly JwtOptions _jwtOptions = jwtOptions.Value;
         private readonly ILogger _logger = logger;
 
-        public async Task<UserResponse> SignUpAsync(SignUpUserRequest usuarioCadastro)
+        public async Task<ApiResponse> SignUpAsync(SignUpUserRequest usuarioCadastro)
         {
+            var response = new ApiResponse();
+
             var identityUser = new IdentityUser
             {
                 UserName = usuarioCadastro.Username,
@@ -32,21 +34,22 @@ namespace Condotec.Identity.Application.Services
             var result = await _userManager.CreateAsync(identityUser, usuarioCadastro.Password!);
 
             if (result.Succeeded)
+            {
                 await _userManager.SetLockoutEnabledAsync(identityUser, false);
-
-            var userSignedResponse = new UserResponse(result.Succeeded);
+                _logger.Information("User created with successfully", usuarioCadastro.Email);
+            }
 
             if (!result.Succeeded && result.Errors.Any())
-                userSignedResponse.AddError(result.Errors.Select(r => r.Description));
+            {
+                response.AddErrors(result.Errors.Select(r => r.Description));
+            }
 
-            _logger.Information("User created with successfully", usuarioCadastro.Email);
-
-            return userSignedResponse;
+            return response;
         }
 
-        public async Task<UserLoginResponse> LoginAsync(SignInUserRequest usuarioLogin)
+        public async Task<ApiResponse<UserLoginResponse>> LoginAsync(SignInUserRequest usuarioLogin)
         {
-            var usuarioLoginResponse = new UserLoginResponse();
+            var apiResponse = new ApiResponse<UserLoginResponse>();
 
             var user = await _userManager.FindByNameAsync(usuarioLogin.Username!);
 
@@ -55,22 +58,23 @@ namespace Condotec.Identity.Application.Services
                 var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Username!, usuarioLogin.Password!, false, true);
 
                 if (result.Succeeded)
+                {
                     return await GenerateCredentials(user.Email);
+                }
 
                 if (!result.Succeeded)
                 {
-                    usuarioLoginResponse = result switch
+                    apiResponse = result switch
                     {
-                        _ when result.IsLockedOut.Equals(true) => usuarioLoginResponse.AddErrors("This account is locked."),
-                        _ when result.IsNotAllowed.Equals(true) => usuarioLoginResponse.AddErrors("This account is locked."),
-                        _ when result.RequiresTwoFactor.Equals(true) => usuarioLoginResponse.AddErrors("This account is locked."),
-                        _ => usuarioLoginResponse.AddErrors("User or password incorrect"),
+                        _ when result.IsLockedOut.Equals(true) => apiResponse.AddError("This account is locked."),
+                        _ when result.IsNotAllowed.Equals(true) => apiResponse.AddError("This account is locked."),
+                        _ when result.RequiresTwoFactor.Equals(true) => apiResponse.AddError("This account is locked."),
+                        _ => apiResponse.AddError("User or password incorrect"),
                     };
                 }
             }
 
-            usuarioLoginResponse.AddErrors("Username not found");
-            return usuarioLoginResponse;
+            return apiResponse;
         }
 
         public async Task<IEnumerable<Claim>> GetUserClaimsAsync(string email)
@@ -83,8 +87,9 @@ namespace Condotec.Identity.Application.Services
             return Enumerable.Empty<Claim>();
         }
 
-        public async Task<UserResponse> AddUserInClaimAsync(AddUserInClaimRequest userInClaim)
+        public async Task<ApiResponse> AddUserInClaimAsync(AddUserInClaimRequest userInClaim)
         {
+            var apiResponse = new ApiResponse();
             var user = await _userManager.FindByEmailAsync(userInClaim.Email!);
 
             if (user != null && userInClaim.Claims?.Any() == true)
@@ -100,29 +105,31 @@ namespace Condotec.Identity.Application.Services
                     if (identityResult.Succeeded)
                     {
                         _logger.Information("User added in claim with success", userInClaim.Email);
-                        return new UserResponse(true);
+                        return apiResponse;
                     }
                 }
             }
 
             _logger.Information("Failed to add user in claim", userInClaim.Email);
-            return new UserResponse(false);
+            apiResponse.AddError("Failed to add user in claim");
+
+            return apiResponse;
         }
 
-        public async Task<UserLoginResponse> LoginWithoutPasswordAsync(string usuarioId)
+        public async Task<ApiResponse<UserLoginResponse>> LoginWithoutPasswordAsync(string usuarioId)
         {
-            var usuarioLoginResponse = new UserLoginResponse();
+            var apiResponse = new ApiResponse<UserLoginResponse>();
             var usuario = await _userManager.FindByIdAsync(usuarioId);
 
             return _userManager switch
             {
-                _ when await _userManager.IsLockedOutAsync(usuario!) => usuarioLoginResponse.AddErrors("This account is locked."),
-                _ when !await _userManager.IsEmailConfirmedAsync(usuario!) => usuarioLoginResponse.AddErrors("This account is locked."),
+                _ when await _userManager.IsLockedOutAsync(usuario!) => apiResponse.AddError("This account is locked."),
+                _ when !await _userManager.IsEmailConfirmedAsync(usuario!) => apiResponse.AddError("This account is locked."),
                 _ => await GenerateCredentials(usuario!.Email)
             };
         }
 
-        private async Task<UserLoginResponse> GenerateCredentials(string? email)
+        private async Task<ApiResponse<UserLoginResponse>> GenerateCredentials(string? email)
         {
             var user = await _userManager.FindByEmailAsync(email!);
             var accessTokenClaims = await GetClaims(user!, true);
@@ -136,14 +143,17 @@ namespace Condotec.Identity.Application.Services
 
             _logger.Information("User logged with successfully", email);
 
-            return new UserLoginResponse
-            (
-                accessToken: accessToken,
-                refreshToken: refreshToken
-            );
+            return new ApiResponse<UserLoginResponse>
+            {
+                Data = new UserLoginResponse
+                {
+                    AccessToken = accessToken,
+                    RefreshToken = refreshToken
+                }
+            };
         }
 
-        private string GerarToken(IEnumerable<System.Security.Claims.Claim> claims, DateTime dataExpiracao)
+        private string GerarToken(IEnumerable<Claim> claims, DateTime dataExpiracao)
         {
             var jwt = new JwtSecurityToken(
                 issuer: _jwtOptions.Issuer,
@@ -165,7 +175,7 @@ namespace Condotec.Identity.Application.Services
                 new(JwtRegisteredClaimNames.Email, user.Email!),
                 new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new(JwtRegisteredClaimNames.Nbf, DateTime.Now.ToString()),
-                new Claim(JwtRegisteredClaimNames.Iat, iat.ToString())
+                new(JwtRegisteredClaimNames.Iat, iat.ToString())
             };
 
             if (adicionarClaimsUsuario)

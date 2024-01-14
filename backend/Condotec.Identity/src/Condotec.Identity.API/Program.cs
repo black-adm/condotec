@@ -1,5 +1,6 @@
 using Condotec.Identity.IoC.Extensions;
 using Condotec.Identity.IoC.Models;
+using Condotec.Infra.CrossCutting.Middlewares;
 
 using System.Text.Json.Serialization;
 
@@ -40,10 +41,11 @@ builder.Services
 
 var app = builder.Build();
 
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 app.RunMigrationsOnApplicationStart();
 
 app.UseSwagger();
-app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SpendManagement.Identity"));
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Condotec.Identity"));
 app.UseHealthCheckers();
 
 app.UseHttpsRedirection();

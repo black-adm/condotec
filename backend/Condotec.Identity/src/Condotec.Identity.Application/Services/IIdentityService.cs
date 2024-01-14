@@ -6,10 +6,10 @@ namespace Condotec.Identity.Application.Services
 {
     public interface IIdentityService
     {
-        Task<UserResponse> SignUpAsync(SignUpUserRequest usuarioCadastro);
-        Task<UserLoginResponse> LoginAsync(SignInUserRequest usuarioLogin);
-        Task<UserResponse> AddUserInClaimAsync(AddUserInClaimRequest userInClaim);
+        Task<ApiResponse> SignUpAsync(SignUpUserRequest usuarioCadastro);
+        Task<ApiResponse<UserLoginResponse>> LoginAsync(SignInUserRequest usuarioLogin);
+        Task<ApiResponse> AddUserInClaimAsync(AddUserInClaimRequest userInClaim);
         Task<IEnumerable<Claim>> GetUserClaimsAsync(string email);
-        Task<UserLoginResponse> LoginWithoutPasswordAsync(string usuarioId);
+        Task<ApiResponse<UserLoginResponse>> LoginWithoutPasswordAsync(string usuarioId);
     }
 }

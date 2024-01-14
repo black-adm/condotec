@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace SpendManagement.Identity.API.Controllers
+namespace Condotec.Identity.API.Controllers
 {
     [Route("api/v1")]
     [ApiController]
@@ -31,14 +31,14 @@ namespace SpendManagement.Identity.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var userSignedIn = await _identityService.SignUpAsync(signUp);
+            var apiResponse = await _identityService.SignUpAsync(signUp);
 
-            if (userSignedIn.Success)
+            if (apiResponse.Success)
             {
-                return Created("/signUp", userSignedIn);
+                return Created("/signUp", apiResponse);
             }
 
-            return BadRequest(userSignedIn.Errors);
+            return BadRequest(apiResponse);
         }
 
         /// <summary>
@@ -56,17 +56,17 @@ namespace SpendManagement.Identity.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<UserLoginResponse>> MakeLoginAsync([FromBody] SignInUserRequest login)
+        public async Task<ActionResult<ApiResponse<UserLoginResponse>>> MakeLoginAsync([FromBody] SignInUserRequest login)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var result = await _identityService.LoginAsync(login);
+            var apiResponse = await _identityService.LoginAsync(login);
 
-            if (result.Success)
-                return Ok(result);
+            if (apiResponse.Success)
+                return Ok(apiResponse);
 
-            return Unauthorized(result.Errors);
+            return Unauthorized(apiResponse);
         }
 
         /// <summary>
@@ -102,13 +102,13 @@ namespace SpendManagement.Identity.API.Controllers
         /// <response code="400">Validation errors</response>
         /// <response code="401">Authentication error</response>
         /// <response code="500">Internal error</response>
-        [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse<UserLoginResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [Authorize]
         [HttpPost("refresh-login")]
-        public async Task<ActionResult<UserLoginResponse>> RefreshLoginAsync()
+        public async Task<ActionResult<ApiResponse<UserLoginResponse>>> RefreshLoginAsync()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             var usuarioId = identity?.FindFirst(ClaimTypes.NameIdentifier)?.Value;

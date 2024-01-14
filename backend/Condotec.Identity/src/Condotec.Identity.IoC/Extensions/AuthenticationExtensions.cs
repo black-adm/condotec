@@ -31,10 +31,10 @@ namespace Condotec.Identity.IoC.Extensions
 
                 services.Configure<IdentityOptions>(options =>
                 {
-                    options.Password.RequireDigit = true;
-                    options.Password.RequireLowercase = true;
-                    options.Password.RequireNonAlphanumeric = true;
-                    options.Password.RequireUppercase = true;
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
                     options.Password.RequiredLength = 6;
                 });
 
