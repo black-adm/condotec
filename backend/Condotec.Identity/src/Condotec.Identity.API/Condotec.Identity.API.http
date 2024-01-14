@@ -1,0 +1,6 @@
+@Condotec.Identity.API_HostAddress = http://localhost:5231
+
+GET {{Condotec.Identity.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
