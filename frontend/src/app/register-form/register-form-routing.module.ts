@@ -32,7 +32,7 @@ const routes: Routes = [
           import('./address-form/address-form.module').then(
             (module) => module.AddressFormModule
           )
-      },
+      }
     ]
   }
 ];
