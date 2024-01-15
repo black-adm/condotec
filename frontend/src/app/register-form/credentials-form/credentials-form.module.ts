@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CredentialsFormRoutingModule } from './credentials-form-routing.module';
 import { CredentialsFormComponent } from './credentials-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { CredentialsFormComponent } from './credentials-form.component';
   ],
   imports: [
     CommonModule,
-    CredentialsFormRoutingModule
+    CredentialsFormRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class CredentialsFormModule { }
