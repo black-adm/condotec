@@ -23,6 +23,14 @@ namespace Condotec.Identity.Application.Services
         {
             var response = new ApiResponse();
 
+            var user = await _userManager.FindByNameAsync(usuarioCadastro.Username!);
+
+            if (user is not null)
+            {
+                response.AddError($"Um usuário com o nome {usuarioCadastro.Username} já existe atualmente! Por favor escolha outro nome de usuário.");
+                return response;
+            }
+
             var identityUser = new IdentityUser
             {
                 UserName = usuarioCadastro.Username,
@@ -37,13 +45,10 @@ namespace Condotec.Identity.Application.Services
             {
                 await _userManager.SetLockoutEnabledAsync(identityUser, false);
                 _logger.Information("User created with successfully", usuarioCadastro.Email);
+                return response;
             }
 
-            if (!result.Succeeded && result.Errors.Any())
-            {
-                response.AddErrors(result.Errors.Select(r => r.Description));
-            }
-
+            response.AddErrors(result.Errors.Select(r => r.Description));
             return response;
         }
 
