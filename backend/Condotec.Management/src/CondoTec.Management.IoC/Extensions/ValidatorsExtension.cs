@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
+using CondoTec.Management.Application.Responses;
 
 namespace CondoTec.Management.IoC.Extensions
 {
@@ -14,15 +15,10 @@ namespace CondoTec.Management.IoC.Extensions
                         .Select(v => v.ErrorMessage)
                         .ToList();
 
-                context.Result = new JsonResult(new
+                context.Result = new JsonResult(new ApiResponse
                 {
-                    Code = 400,
-                    Message = "One or more validation errors occurred.",
-                    Errors = errors
-                })
-                {
-                    StatusCode = 200
-                };
+                    ErrorMessages = ["One or more validation errors occurred."]
+                });
             }
         }
     }
