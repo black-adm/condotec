@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { RegisterFormComponent } from '../register-form.component';
 
@@ -9,7 +9,7 @@ import { RegisterFormComponent } from '../register-form.component';
 export class PersonalDataFormComponent implements OnInit {
   form!: FormGroup
 
-  constructor(private registerForm: RegisterFormComponent) {}
+  private registerForm = inject(RegisterFormComponent)
 
   ngOnInit() {
     this.form = this.registerForm.getPersonalData()
