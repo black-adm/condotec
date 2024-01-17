@@ -12,18 +12,18 @@ export class RegisterFormComponent {
     protected form = this.formBuilderService.group({
       credentials: this.formBuilderService.group({
         email: ['', [Validators.required,Validators.email]],
-        username: ['', [Validators.required, Validators.min(3), Validators.max(20)]],
-        password: ['', [Validators.required, Validators.min(4), Validators.max(40)]],
-        passwordConfirmation: ['', [Validators.required, Validators.min(4), Validators.max(30)]],
+        username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+        password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(40)]],
+        passwordConfirmation: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]],
       }),
       personalData: this.formBuilderService.group({
-        firstName: ['', [Validators.required, Validators.min(3), Validators.max(30)]],
-        lastName: ['', [Validators.required, Validators.min(3), Validators.max(40)]],
-        phone: ['', [Validators.required, Validators.min(10), Validators.max(11)]],
-        cpf: ['', [Validators.required, Validators.min(11), Validators.max(11)]],
+        firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+        lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
+        phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
+        cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
       }),
       address: this.formBuilderService.group({
-        postalCode: ['', [Validators.required, Validators.min(8), Validators.max(8)]],
+        postalCode: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
         streetAddress: '',
         complement: '' || null,
         city: '',

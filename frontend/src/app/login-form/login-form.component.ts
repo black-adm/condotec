@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AuthService, Colaborator } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login-form',

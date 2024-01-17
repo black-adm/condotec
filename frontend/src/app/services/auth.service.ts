@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, map } from 'rxjs';
 
 export const STORAGE_KEY = 'ACCESS_TOKEN'
 export const API_URL = 'http://172.17.0.3:8080/api/v1'
 
-export interface Colaborator {
+export interface SignInData {
   data: {
     accessToken: string,
     id: string,
@@ -18,17 +18,17 @@ export interface Colaborator {
 })
 export class AuthService {
 
-  private colaborator: BehaviorSubject<Colaborator | null | undefined>
-    = new BehaviorSubject<Colaborator | null | undefined>(undefined)
+  private colaborator: BehaviorSubject<SignInData | null | undefined>
+    = new BehaviorSubject<SignInData | null | undefined>(undefined)
 
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient)
 
   getColaborator() {
     const token = localStorage.getItem(STORAGE_KEY)
 
     if(token) {
       const decodedToken = jwtDecode<JwtPayload>(token)
-      const res: Colaborator = {
+      const res: SignInData = {
         data : {
           accessToken: token,
           id: decodedToken.sub!
@@ -48,7 +48,7 @@ export class AuthService {
           localStorage.setItem(STORAGE_KEY, response.data.accessToken)
 
           const decoded = jwtDecode<JwtPayload>(response.data.accessToken);
-            const result: Colaborator = {
+            const result: SignInData = {
               data: {
                 accessToken: response.accessToken,
                 id: decoded.sub!
