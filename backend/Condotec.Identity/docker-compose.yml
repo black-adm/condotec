@@ -2,20 +2,21 @@ version: "3.7"
 
 networks:
   condotec:
-    external:
-      name: condotec-network
+    name: condotec-network
+    external: true
 
 services:
-    condotec_identity:
-      container_name: condotec_identity
-      build:
-        context: .
-        dockerfile: Dockerfile
-      image: condotec_identity:${APP_VERSION}
-      environment:
-        - APP_VERSION=${APP_VERSION}
-        - ASPNETCORE_ENVIRONMENT=Docker
-      ports:
-        - 8083:8080
-      networks:
-        - condotec
+  condotec_identity:
+    container_name: condotec_identity
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: condotec_identity:${APP_VERSION}
+    environment:
+      - APP_VERSION=${APP_VERSION}
+      - ASPNETCORE_ENVIRONMENT=Docker
+    ports:
+      - 8083:8080
+    networks:
+      - condotec
+
