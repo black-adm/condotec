@@ -17,16 +17,21 @@
     </div>
 
     <div class="mt-10 w-full px-8 sm:px-0 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" [formGroup]="form">
+      <form
+        class="space-y-6"
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+      >
         <div>
           <label class="block ml-2 text-sm font-semibold leading-6 text-dark-gray">
-            Email
+            Nome de usuário
           </label>
           <div class="mt-1">
             <input
               type="text"
               class="block w-full rounded-full border-2 py-2 pl-6 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
               required
+              formControlName="username"
             />
           </div>
         </div>
@@ -49,16 +54,22 @@
               type="password"
               class="block w-full rounded-full border-2 py-2 pl-6 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
               required
+              formControlName="password"
             />
           </div>
         </div>
 
-        <div>
+        <div class="flex flex-col justify-center items-center">
           <button
             type="submit"
-            class="flex w-full justify-center rounded-full bg-primary-green px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-light-blue focus:bg-light-blue">
+            [disabled]="form.invalid"
+            class="disabled:bg-light-gray disabled:text-dark-gray disabled:cursor-not-allowed flex w-full justify-center rounded-full bg-primary-green px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-light-blue focus:bg-light-blue">
               Entrar
           </button>
+
+          <span class="text-xs font-medium text-center text-primary-red">
+            {{ error }}
+          </span>
         </div>
       </form>
 
