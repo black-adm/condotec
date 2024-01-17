@@ -2,13 +2,13 @@
 
   <div class="mt-12 lg:mt-0 flex flex-col items-center justify-center bg-white">
     <div class="w-full sm:mx-auto sm:w-full sm:max-w-sm">
-        <img
+      <img
         class="mx-auto h-28 w-auto"
         src="../../assets/images/logo-white.png"
-        alt="Logo"
-      />
+        alt="Logo" />
 
-      <h2 class="mt-4 text-center text-2xl md:text-3xl font-bold leading-9 tracking-tight text-dark">
+      <h2
+        class="mt-4 text-center text-2xl md:text-3xl font-bold leading-9 tracking-tight text-dark">
         Bem vindo de volta 🤝
       </h2>
       <p class="text-xs sm:text-sm font-medium text-dark-gray text-center">
@@ -20,10 +20,10 @@
       <form
         class="space-y-6"
         [formGroup]="form"
-        (ngSubmit)="onSubmit()"
-      >
+        (ngSubmit)="onSubmit()">
         <div>
-          <label class="block ml-2 text-sm font-semibold leading-6 text-dark-gray">
+          <label
+            class="block ml-2 text-sm font-semibold leading-6 text-dark-gray">
             Nome de usuário
           </label>
           <div class="mt-1">
@@ -31,45 +31,76 @@
               type="text"
               class="block w-full rounded-full border-2 py-2 pl-6 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
               required
-              formControlName="username"
-            />
+              formControlName="username" />
           </div>
         </div>
 
         <div>
           <div class="flex items-center justify-between">
-            <label class="block ml-2 text-sm font-semibold leading-6 text-dark-gray">
+            <label
+              class="block ml-2 text-sm font-semibold leading-6 text-dark-gray">
               Senha
             </label>
             <div class="text-sm">
-              <a
-                href="#"
+              <a href="#"
                 class="font-semibold text-xs sm:text-[13px] text-primary-blue hover:text-light-blue">
                 Esqueceu sua senha?
               </a>
             </div>
           </div>
-          <div class="mt-1">
+
+          <div class="mt-1 flex items-center relative">
             <input
-              type="password"
-              class="block w-full rounded-full border-2 py-2 pl-6 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
+              [type]="showPassword ? 'text' : 'password' "
+              id="password"
+              class=" block w-full rounded-full border-2 py-2 pl-6 text-dark
+              sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray
+              outline-none ring-1 ring-inset ring-medium-gray focus:ring-2
+              focus:ring-inset focus:ring-primary-green"
               required
-              formControlName="password"
-            />
+              formControlName="password" />
+
+            <button
+              (click)="toggleShowPassword()"
+              class="absolute right-5 top-1/2 transform -translate-y-1/2 hover:bg-light-gray hover:rounded-full p-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                fill="#000000" viewBox="0 0 256 256">
+                <ng-container
+                  *ngIf="showPasswordIcon; else visiblePasswordIcon">
+
+                  <path
+                    d="M228,175a8,8,0,0,1-10.92-3l-19-33.2A123.23,123.23,0,0,1,162,155.46l5.87,35.22a8,8,0,0,1-6.58,9.21A8.4,8.4,0,0,1,160,200a8,8,0,0,1-7.88-6.69l-5.77-34.58a133.06,133.06,0,0,1-36.68,0l-5.77,34.58A8,8,0,0,1,96,200a8.4,8.4,0,0,1-1.32-.11,8,8,0,0,1-6.58-9.21L94,155.46a123.23,123.23,0,0,1-36.06-16.69L39,172A8,8,0,1,1,25.06,164l20-35a153.47,153.47,0,0,1-19.3-20A8,8,0,1,1,38.22,99c16.6,20.54,45.64,45,89.78,45s73.18-24.49,89.78-45A8,8,0,1,1,230.22,109a153.47,153.47,0,0,1-19.3,20l20,35A8,8,0,0,1,228,175Z"></path>
+                </ng-container>
+
+                <ng-template #visiblePasswordIcon>
+                  <path
+                    d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"></path>
+                </ng-template>
+              </svg>
+            </button>
           </div>
         </div>
+
+        <span
+          *ngIf="error"
+          class="mt-1 inline-flex items-center justify-center gap-2 text-xs text-primary-red font-medium">
+          <svg
+            xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-info"><circle cx="12" cy="12" r="10" /><path
+              d="M12 16v-4" /><path d="M12 8h.01" /></svg>
+          {{ error }}
+        </span>
 
         <div class="flex flex-col justify-center items-center">
           <button
             type="submit"
             [disabled]="form.invalid"
             class="disabled:bg-light-gray disabled:text-dark-gray disabled:cursor-not-allowed flex w-full justify-center rounded-full bg-primary-green px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-light-blue focus:bg-light-blue">
-              Entrar
+            Entrar
           </button>
-
-          <span class="text-xs font-medium text-center text-primary-red">
-            {{ error }}
-          </span>
         </div>
       </form>
 
@@ -77,8 +108,7 @@
         Não possui uma conta?
         <a
           routerLink="/cadastrar"
-          class="font-semibold leading-6 text-primary-blue hover:text-cyan-green hover:underline"
-        >
+          class="font-semibold leading-6 text-primary-blue hover:text-cyan-green hover:underline">
           Cadastre-se
         </a>
       </p>
@@ -93,45 +123,60 @@
   </div>
 
   <div
-    class="hidden lg:flex lg:items-center lg:justify-center lg:p-5"
-  >
+    class="hidden lg:flex lg:items-center lg:justify-center lg:p-5">
     <div
       class="h-full w-full rounded-3xl bg-cover bg-no-repeat"
-      style="background-image: url('../../assets/images/condominium.png');"
-    >
+      style="background-image: url('../../assets/images/condominium.png');">
       <div class="h-full flex flex-col items-center">
         <div class="py-12 rounded-t-3xl backdrop-blur-sm w-full text-center">
-            <h4 class="text-black font-medium text-2xl">
-              Uma nova forma de <br>
-              gerenciar condomínios
-            </h4>
-            <p class="pt-4 text-xs text-dark xl:text-sm">
-              Controle todo fluxo do seu condomínio na plataforma. <br>
-              Gerencie cadastros, consultas, encomendas e relatórios em um só lugar
-            </p>
+          <h4 class="text-black font-medium text-2xl">
+            Uma nova forma de <br>
+            gerenciar condomínios
+          </h4>
+          <p class="pt-4 text-xs text-dark xl:text-sm">
+            Controle todo fluxo do seu condomínio na plataforma. <br>
+            Gerencie cadastros, consultas, encomendas e relatórios em um só
+            lugar
+          </p>
 
-            <div class="mt-6 flex items-center justify-center gap-4 mx-2 xl:mx-0">
-              <span class="inline-flex items-center gap-2 text-xs font-semibold rounded-full py-1.5 px-2 xl:py-2 xl:px-3 border-2 border-dark cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-check"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
-                  7 dias grátis
-              </span>
+          <div class="mt-6 flex items-center justify-center gap-4 mx-2 xl:mx-0">
+            <span
+              class="inline-flex items-center gap-2 text-xs font-semibold rounded-full py-1.5 px-2 xl:py-2 xl:px-3 border-2 border-dark cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-badge-check"><path
+                  d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" /><path
+                  d="m9 12 2 2 4-4" /></svg>
+              7 dias grátis
+            </span>
 
-              <span class="inline-flex items-center gap-2 text-xs font-semibold rounded-full py-1.5 px-2 xl:py-2 xl:px-3 border-2 border-dark cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-box"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
-                  Controle de encomendas
-              </span>
+            <span
+              class="inline-flex items-center gap-2 text-xs font-semibold rounded-full py-1.5 px-2 xl:py-2 xl:px-3 border-2 border-dark cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-box"><path
+                  d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" /><path
+                  d="m3.3 7 8.7 5 8.7-5" /><path d="M12 22V12" /></svg>
+              Controle de encomendas
+            </span>
 
-              <span class="inline-flex items-center gap-2 text-xs font-semibold rounded-full py-1.5 px-2 xl:py-2 xl:px-3 border-2 border-dark cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scroll-text"><path d="M8 21h12a2 2 0 0 0 2-2v-2H10v2a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v3h4"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M15 8h-5"/><path d="M15 12h-5"/></svg>
-                  Relatórios mensais
-              </span>
-            </div>
+            <span
+              class="inline-flex items-center gap-2 text-xs font-semibold rounded-full py-1.5 px-2 xl:py-2 xl:px-3 border-2 border-dark cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-scroll-text"><path
+                  d="M8 21h12a2 2 0 0 0 2-2v-2H10v2a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v3h4" /><path
+                  d="M19 17V5a2 2 0 0 0-2-2H4" /><path d="M15 8h-5" /><path
+                  d="M15 12h-5" /></svg>
+              Relatórios mensais
+            </span>
+          </div>
         </div>
 
       </div>
     </div>
   </div>
 </div>
-
-
-

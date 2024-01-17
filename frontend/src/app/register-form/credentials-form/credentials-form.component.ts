@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class CredentialsFormComponent implements OnInit {
   form!: FormGroup
   error = ''
+  showPassword = false
+  showPasswordIcon = false
 
   private registerForm = inject(RegisterFormComponent)
   private registerService = inject(RegisterService)
@@ -18,6 +20,12 @@ export class CredentialsFormComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.registerForm.getCredentials()
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword
+    if (this.showPassword) this.showPasswordIcon = true
+    else this.showPasswordIcon = !this.showPasswordIcon;
   }
 
   onSubmit() {

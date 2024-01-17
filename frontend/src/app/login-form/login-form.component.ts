@@ -9,6 +9,8 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './login-form.component.html',
 })
 export class LoginFormComponent {
+  showPassword = false
+  showPasswordIcon = false
 
   private formBuilderService =  inject(FormBuilder)
   private authService =  inject(AuthService)
@@ -23,6 +25,12 @@ export class LoginFormComponent {
     ]
   });
   error = ''
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword
+    if (this.showPassword) this.showPasswordIcon = true
+    else this.showPasswordIcon = !this.showPasswordIcon;
+  }
 
   onSubmit() {
     const username = this.form.get('username')?.value;
