@@ -15,7 +15,7 @@
     }
 
     public class ApiResponse
-    {   
+    {
         public bool Success => ErrorMessages?.Count == 0;
         public List<string?> ErrorMessages { get; set; } = [];
 

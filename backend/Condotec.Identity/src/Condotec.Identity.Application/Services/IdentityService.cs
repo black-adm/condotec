@@ -27,7 +27,7 @@ namespace Condotec.Identity.Application.Services
 
             if (user is not null)
             {
-                response.AddError($"Um usuário com o nome {usuarioCadastro.Username} já existe atualmente! Por favor escolha outro nome de usuário.");
+                response.AddError($"Um usuário com o nome {usuarioCadastro.Username} já existe! Por favor escolha outro nome de usuário.");
                 return response;
             }
 
