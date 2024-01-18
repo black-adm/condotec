@@ -1,6 +1,8 @@
-﻿namespace CondoTec.Management.Application.Commands.Condominios.UseCases.AddCondominio
+﻿using MediatR;
+
+namespace CondoTec.Management.Application.Commands.Condominios.UseCases.AddCondominio
 {
-    internal class AddCondominioCommand
+    public class AddCondominioCommand : IRequest<string>
     {
     }
 }
