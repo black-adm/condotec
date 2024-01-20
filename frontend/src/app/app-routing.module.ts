@@ -5,7 +5,8 @@ const routes: Routes = [
   {
     path: 'login',
      loadChildren: () => import('./login-form/login-form.module')
-      .then(module => module.LoginFormModule)
+      .then(module => module.LoginFormModule),
+    title: 'Condotec | Fazer login'
  }
 ];
 

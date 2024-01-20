@@ -17,21 +17,24 @@ const routes: Routes = [
         loadChildren: () =>
           import('./credentials-form/credentials-form.module').then(
             (module) => module.CredentialsFormModule
-          )
+          ),
+        title: 'Condotec | Criar credenciais'
       },
       {
         path: 'dados-pessoais',
         loadChildren: () =>
           import('./personal-data-form/personal-data-form.module').then(
             (module) => module.PersonalDataFormModule
-          )
+          ),
+        title: 'Condotec | Dados pessoa fisíca'
       },
       {
         path: 'dados-pessoais/endereco',
         loadChildren: () =>
           import('./address-form/address-form.module').then(
             (module) => module.AddressFormModule
-          )
+          ),
+          title: 'Condotec | Dados de endereço'
       }
     ]
   }

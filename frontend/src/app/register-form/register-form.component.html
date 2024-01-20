@@ -1,32 +1,4 @@
-<header class="w-screen h-auto p-2 sm:p-0 bg-dark-blue border-b-4 border-cyan-green">
-  <div class="flex justify-between items-center px-5 sm:px-8 lg:px-12">
-    <div class="flex items-center sm:pl-4 lg:pl-8">
-        <img
-          src="../../assets/images/house-dark.png"
-          class="h-16 w-16 sm:h-20 sm:w-20"
-          alt="logo"
-        />
-
-        <div class="flex flex-col">
-          <h5 class="text-white font-extrabold text-sm sm:text-[15px] sm:leading-4 uppercase sm:tracking-wide">
-            condo<strong class="text-cyan-green">tec</strong>
-          </h5>
-          <p class="text-primary-green text-xs leading-3 font-semibold uppercase">management</p>
-        </div>
-    </div>
-
-    <div class="flex items-center gap-4 sm:pr-4 lg:pr-8">
-      <p class="hidden sm:block sm:text-white sm:text-sm">
-        Possui uma conta?
-      </p>
-      <a
-        routerLink="/login"
-        class="bg-primary-blue text-white text-xs font-semibold py-2 px-4 rounded-full hover:bg-light-blue focus:bg-light-blue">
-          Fazer login
-      </a>
-    </div>
-  </div>
-</header>
+<app-header></app-header>
 
 <div class="max-h-screen w-full mt-10">
   <div class="flex justify-around items-center mx-auto">
@@ -36,27 +8,37 @@
     <div className="flex flex-1 relative">
       <div class="flex flex-col p-4">
         <div class="px-2">
-          <h1 class="inline-flex justify-center items-center gap-2 sm:gap-4 text-xl sm:text-3xl font-extrabold text-ocean-blue">
+          <h1
+            class="inline-flex justify-center items-center gap-2 sm:gap-4 text-xl sm:text-3xl font-extrabold text-ocean-blue">
             Cadastro Pessoa Física
-            <svg class="bg-light-gray rounded-full mb-1" width="30" height="30" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M7 18V17C7 14.2386 9.23858 12 12 12V12C14.7614 12 17 14.2386 17 17V18" stroke="#003F88" stroke-width="1.5" stroke-linecap="round"></path><path d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z" stroke="#003F88" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="12" r="10" stroke="#003F88" stroke-width="1.5" stroke-width="1.5"></circle></svg>
+            <svg class="bg-light-gray rounded-full mb-1" width="30" height="30"
+              stroke-width="1.5" viewBox="0 0 24 24" fill="none"
+              xmlns="http://www.w3.org/2000/svg" color="#000000"><path
+                d="M7 18V17C7 14.2386 9.23858 12 12 12V12C14.7614 12 17 14.2386 17 17V18"
+                stroke="#003F88" stroke-width="1.5"
+                stroke-linecap="round"></path><path
+                d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z"
+                stroke="#003F88" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round"></path><circle cx="12" cy="12" r="10"
+                stroke="#003F88" stroke-width="1.5"
+                stroke-width="1.5"></circle></svg>
           </h1>
 
-          <p class="pt-2 sm:pt-3 pr-5 sm:pr-0 text-left font-medium tracking-tight text-dark-gray">
-            Para continuar, siga algumas etapas para cadastrar sua conta.
+          <p
+            class="pt-2 sm:pt-3 pr-5 sm:pr-0 text-left font-medium tracking-tight text-dark-gray">
+            Para continuar, siga algumas etapas para realizar seu cadastro.
           </p>
         </div>
 
-      <div class="flex justify-center items-center">
+        <div class="flex justify-center items-center">
           <form
             [formGroup]="form"
-            class="min-w-full"
-          >
-          <router-outlet></router-outlet>
-        </form>
-      </div>
+            class="min-w-full">
+            <router-outlet></router-outlet>
+          </form>
+        </div>
       </div>
     </div>
 
   </div>
 </div>
-

@@ -4,7 +4,7 @@ import { JwtPayload, jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, map } from 'rxjs';
 
 export const STORAGE_KEY = 'ACCESS_TOKEN'
-export const API_URL = 'http://172.17.0.3:8080/api/v1'
+export const API_URL = 'http://172.26.0.2:8080/api/v1'
 
 export interface SignInData {
   data: {

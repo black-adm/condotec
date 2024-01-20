@@ -29,8 +29,9 @@
           <div class="mt-1">
             <input
               type="text"
-              class="block w-full rounded-full border-2 py-2 pl-6 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
+              class="block w-full rounded-full border-2 py-2 px-6 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
               required
+              maxlength="20"
               formControlName="username" />
           </div>
         </div>
@@ -53,11 +54,12 @@
             <input
               [type]="showPassword ? 'text' : 'password' "
               id="password"
-              class=" block w-full rounded-full border-2 py-2 pl-6 text-dark
+              class=" block w-full rounded-full border-2 py-2 px-6 text-dark
               sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray
               outline-none ring-1 ring-inset ring-medium-gray focus:ring-2
               focus:ring-inset focus:ring-primary-green"
               required
+              maxlength="40"
               formControlName="password" />
 
             <button
@@ -126,21 +128,23 @@
     <div
       class="h-full w-full rounded-3xl bg-cover bg-no-repeat"
       style="background-image: url('../../assets/images/condominium.png');">
-      <div class="h-full flex flex-col items-center">
-        <div class="py-12 rounded-t-3xl backdrop-blur-sm w-full text-center">
-          <h4 class="text-black font-medium text-2xl">
+
+      <div class="h-full flex flex-col justify-end items-center">
+        <div class="py-12 rounded-t-3xl backdrop-blur-[2px] w-full text-center">
+          <h4 class="text-dark-blue font-semibold text-2xl">
             Uma nova forma de <br>
             gerenciar condomínios
           </h4>
-          <p class="pt-4 text-xs text-dark xl:text-sm">
-            Controle todo fluxo do seu condomínio na plataforma. <br>
+
+          <p class="pt-4 text-xs text-black font-medium xl:text-sm">
+            Controle todo fluxo do seu condomínio com a nossa plataforma. <br>
             Gerencie cadastros, consultas, encomendas e relatórios em um só
             lugar
           </p>
 
           <div class="mt-6 flex items-center justify-center gap-4 mx-2 xl:mx-0">
             <span
-              class="inline-flex items-center gap-2 text-xs font-semibold rounded-full py-1.5 px-2 xl:py-2 xl:px-3 border-2 border-dark cursor-pointer">
+              class="inline-flex items-center gap-2 text-xs font-semibold rounded-full py-1.5 px-2 xl:py-2 xl:px-3 bg-dark-blue border-2 border-cyan-green text-cyan-green cursor-default">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -151,7 +155,7 @@
             </span>
 
             <span
-              class="inline-flex items-center gap-2 text-xs font-semibold rounded-full py-1.5 px-2 xl:py-2 xl:px-3 border-2 border-dark cursor-pointer">
+              class="inline-flex items-center gap-2 text-xs font-semibold rounded-full py-1.5 px-2 xl:py-2 xl:px-3 bg-dark-blue border-2 border-cyan-green text-cyan-green cursor-default">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -162,7 +166,7 @@
             </span>
 
             <span
-              class="inline-flex items-center gap-2 text-xs font-semibold rounded-full py-1.5 px-2 xl:py-2 xl:px-3 border-2 border-dark cursor-pointer">
+              class="inline-flex items-center gap-2 text-xs font-semibold rounded-full py-1.5 px-2 xl:py-2 xl:px-3 bg-dark-blue border-2 border-cyan-green text-cyan-green cursor-default">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -177,5 +181,3 @@
 
       </div>
     </div>
-  </div>
-</div>

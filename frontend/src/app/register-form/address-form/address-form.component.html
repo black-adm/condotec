@@ -12,6 +12,7 @@
           mask="00000-000"
           class="block w-full rounded-full border-2 py-2 pl-6 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
           required
+          (blur)="searchPostalCode($event)"
           formControlName="postalCode" />
       </div>
     </div>
@@ -25,6 +26,7 @@
           type="text"
           class="block w-full rounded-full border-2 py-2 pl-6 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
           required
+          maxlength="30"
           formControlName="complement" />
       </div>
     </div>
@@ -53,6 +55,7 @@
           type="text"
           class="block w-full rounded-full border-2 py-2 pl-6 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
           required
+          maxlength="30"
           formControlName="city" />
       </div>
     </div>
@@ -64,8 +67,9 @@
       <div class="mt-1">
         <input
           type="text"
-          class="block w-full rounded-full border-2 py-2 pl-4 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
+          class="block w-full rounded-full border-2 py-2 pl-4 text-dark uppercase sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
           required
+          maxlength="2"
           formControlName="uf" />
       </div>
     </div>
