@@ -25,10 +25,11 @@ export class RegisterFormComponent {
     }),
     address: this.formBuilderService.group({
       postalCode: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
-      streetAddress: '',
+      street: '',
+      number: '',
+      district: '',
       complement: '' || null,
       city: '',
-      uf: '',
     })
   })
 

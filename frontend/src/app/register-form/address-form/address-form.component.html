@@ -1,7 +1,7 @@
 <div
   [formGroup]="form"
   class="flex flex-col justify-center space-y-7 py-12">
-  <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+  <div class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-6">
     <div class="sm:col-span-3">
       <label class="block ml-2 text-sm font-semibold leading-6 text-dark">
         Digite o CEP
@@ -19,58 +19,74 @@
 
     <div class="sm:col-span-3">
       <label class="block ml-2 text-sm font-semibold leading-6 text-dark">
+        Endereço
+      </label>
+      <div class="mt-1">
+        <input
+          type="text"
+          class="block w-full rounded-full border-2 py-2 pl-6 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
+          required
+          maxlength="40"
+          formControlName="street" />
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-6">
+    <div class="sm:col-span-3">
+      <label class="block ml-2 text-sm font-semibold leading-6 text-dark">
+        Número
+      </label>
+      <div class="mt-1">
+        <input
+          type="text"
+          class="block w-full rounded-full border-2 py-2 pl-6 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
+          required
+          maxlength="10"
+          formControlName="number" />
+      </div>
+    </div>
+
+    <div class="sm:col-span-3">
+      <label class="block ml-2 text-sm font-semibold leading-6 text-dark">
+        Bairro
+      </label>
+      <div class="mt-1">
+        <input
+          type="text"
+          class="block w-full rounded-full border-2 py-2 pl-6 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
+          required
+          maxlength="40"
+          formControlName="district" />
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-6">
+    <div class="sm:col-span-3">
+      <label class="block ml-2 text-sm font-semibold leading-6 text-dark">
         Complemento
       </label>
       <div class="mt-1">
         <input
           type="text"
           class="block w-full rounded-full border-2 py-2 pl-6 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
-          required
-          maxlength="30"
+          maxlength="40"
           formControlName="complement" />
       </div>
     </div>
-  </div>
 
-  <div>
-    <label class="block ml-2 text-sm font-semibold leading-6 text-dark">
-      Endereço completo
-    </label>
-    <div class="mt-1">
-      <input
-        type="text"
-        class="block w-full rounded-full border-2 py-2 pl-6 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
-        required
-        formControlName="streetAddress" />
-    </div>
-  </div>
-
-  <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
     <div class="sm:col-span-3">
       <label class="block ml-2 text-sm font-semibold leading-6 text-dark">
-        Cidade
+        Cidade e Estado
       </label>
       <div class="mt-1">
         <input
           type="text"
-          class="block w-full rounded-full border-2 py-2 pl-6 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
+          class="block w-full rounded-full border-2 py-2 pl-4 text-dark sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
           required
-          maxlength="30"
+          maxlength="50"
           formControlName="city" />
-      </div>
-    </div>
-
-    <div class="sm:col-span-3">
-      <label class="block ml-2 text-sm font-semibold leading-6 text-dark">
-        UF
-      </label>
-      <div class="mt-1">
-        <input
-          type="text"
-          class="block w-full rounded-full border-2 py-2 pl-4 text-dark uppercase sm:leading-6 sm:tracking-wide shadow-md shadow-light-gray outline-none ring-1 ring-inset ring-medium-gray focus:ring-2 focus:ring-inset focus:ring-primary-green"
-          required
-          maxlength="2"
-          formControlName="uf" />
       </div>
     </div>
   </div>

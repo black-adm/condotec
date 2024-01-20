@@ -5,10 +5,11 @@ import { RegisterFormComponent } from '../register-form.component';
 
 interface AddressProps {
   postalCode: string
-  streetAddress: string
-  complement: string
+  street: string
+  number: string
+  district: string
+  complement?: string
   city: string
-  uf: string
 }
 
 const url = 'https://viacep.com.br/ws'
@@ -37,16 +38,18 @@ export class AddressFormComponent implements OnInit {
         (data: any) => {
           const result: AddressProps = {
             postalCode: data.cep || '',
-            streetAddress: `${data.logradouro || ''} - ${data.bairro || ''}`,
+            street: data.logradouro || '',
+            number: '',
+            district: data.bairro || '',
             complement: data.complemento || '',
-            city: data.localidade || '',
-            uf: data.uf || '',
+            city: `${data.localidade || ''} - ${data.uf || ''}`,
           };
 
-          this.form.controls['streetAddress'].setValue(result.streetAddress);
+          this.form.controls['street'].setValue(result.street);
+          this.form.controls['number'].setValue(result.number);
+          this.form.controls['district'].setValue(result.district);
           this.form.controls['complement'].setValue(result.complement);
           this.form.controls['city'].setValue(result.city);
-          this.form.controls['uf'].setValue(result.uf);
         }
       )
   }
