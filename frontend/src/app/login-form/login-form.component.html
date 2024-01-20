@@ -1,10 +1,11 @@
 <div class="h-screen w-full lg:grid lg:grid-cols-2">
 
-  <div class="mt-12 lg:mt-0 flex flex-col items-center justify-center bg-white">
+  <div
+    class="mt-6 lg:mt-0 flex flex-col items-center justify-center h-full bg-grid bg-contain xl:bg-cover">
     <div class="w-full sm:mx-auto sm:w-full sm:max-w-sm">
       <img
         class="mx-auto h-28 w-auto"
-        src="../../assets/images/logo-white.png"
+        src="../../assets/images/logo-splash.png"
         alt="Logo" />
 
       <h2
@@ -64,6 +65,7 @@
 
             <button
               (click)="toggleShowPassword()"
+              title="mostrar senha"
               class="absolute right-5 top-1/2 transform -translate-y-1/2 hover:bg-light-gray hover:rounded-full p-1">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                 fill="#000000" viewBox="0 0 256 256">
@@ -114,24 +116,25 @@
         </a>
       </p>
 
-      <div class="mt-10 flex justify-center items-center">
+      <footer class="mt-10 flex justify-center items-center">
         <small class="text-xs font-medium text-gray-400">
           Condotec Management © 2024. <br>
           Todos os direitos reservados.
         </small>
-      </div>
+      </footer>
     </div>
   </div>
 
   <div
-    class="hidden lg:flex lg:items-center lg:justify-center lg:p-5">
+    class="hidden lg:flex lg:items-center lg:justify-center">
     <div
-      class="h-full w-full rounded-3xl bg-cover bg-no-repeat"
+      class="h-full w-full bg-cover bg-no-repeat"
       style="background-image: url('../../assets/images/condominium.png');">
 
       <div class="h-full flex flex-col justify-end items-center">
         <div class="py-12 rounded-t-3xl backdrop-blur-[2px] w-full text-center">
-          <h4 class="text-transparent bg-clip-text bg-gradient-to-tr from-dark-blue via-ocean-blue to-primary-blue font-semibold xl:font-extrabold text-2xl xl:text-3xl">
+          <h4
+            class="text-transparent bg-clip-text bg-gradient-to-tr from-dark-blue via-ocean-blue to-primary-blue font-semibold xl:font-extrabold text-2xl xl:text-3xl">
             Uma nova forma de <br>
             gerenciar condomínios
           </h4>
