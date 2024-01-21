@@ -11,7 +11,7 @@ namespace CondoTec.Management.API.Controllers
     [Authorize]
     public class CondominioController(IMediator mediator) : Controller
     {
-        private readonly IMediator _mediator = mediator;
+        private readonly ISender _sender = mediator;
 
         [HttpPost]
         [Route("addCondominio", Name = nameof(AddCondominio))]
@@ -21,8 +21,8 @@ namespace CondoTec.Management.API.Controllers
         [ClaimsAuthorize(ClaimTypes.Condominio, "Insert")]
         public async Task<IActionResult> AddCondominio([FromBody] AddCondominioCommand condominioCommand, CancellationToken cancellationToken)
         {
-            var receiptId = await _mediator.Send(condominioCommand, cancellationToken);
-            return Created("/addReceipt", receiptId);
+            var apiResponse = await _sender.Send(condominioCommand, cancellationToken);
+            return Created("/addReceipt", apiResponse);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace CondoTec.Management.API.Extensions
 {
     public static class MediatRExtension
     {
-        public static IServiceCollection AddDependencyInjection(this IServiceCollection services)
+        public static IServiceCollection AddMediatR(this IServiceCollection services)
         {
             services.AddMediatR(
                     x => x.RegisterServicesFromAssemblies(
