@@ -1,12 +1,13 @@
-﻿namespace CondoTec.Management.Application.Responses
+﻿using System.Net;
+
+namespace CondoTec.Management.Application.Responses
 {
     public class ApiResponse<T>
     {
         public bool Success => ErrorMessages?.Count == 0;
         public List<string?> ErrorMessages { get; set; } = [];
 
-        public T? Data { get; set; } = Activator.CreateInstance<T>();
-
+        public T? Data { get; set; }
 
         public ApiResponse<T> AddError(string error)
         {
@@ -18,7 +19,8 @@
     public class ApiResponse
     {
         public bool Success => ErrorMessages?.Count == 0;
-        public List<string?> ErrorMessages { get; set; } = [];
+        public HttpStatusCode StatusCode { get; set; }
+        public List<string> ErrorMessages { get; set; } = [];
 
         public void AddError(string error)
         {

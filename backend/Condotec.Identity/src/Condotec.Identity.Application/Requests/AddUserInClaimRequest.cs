@@ -14,8 +14,8 @@
 
     public enum ClaimType
     {
-        Receipt = 0,
-        Category = 1
+        Condominio = 0,
+        Colaborador = 1
     }
 
     public enum ClaimValue

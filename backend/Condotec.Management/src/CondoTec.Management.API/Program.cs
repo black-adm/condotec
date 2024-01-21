@@ -1,6 +1,7 @@
 using CondoTec.Management.API.Extensions;
 using CondoTec.Management.IoC.Conf;
 using CondoTec.Management.IoC.Extensions;
+using CondoTec.Management.IoC.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,8 +23,12 @@ builder.Logging
 
 // Add services to the container.
 builder.Services
+    .AddMongo(applicationSettings?.MongoSettings)
     .AddAuth(applicationSettings?.TokenAuth)
     .AddLoggingDependency()
+    .AddMediatR()
+    .AddRepositories()
+    .AddValidators()
     .AddControllers(options => options.Filters.Add(typeof(ValidationAttribute)))
     .AddNewtonsoftJson()
     .ConfigureApiBehaviorOptions(options =>
@@ -40,6 +45,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Condotec.Management.API"));
 

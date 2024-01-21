@@ -31,7 +31,7 @@ namespace CondoTec.Management.API.Extensions
                          Array.Empty<string>()
                      }
                  });
-                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "SpendManagement.API.xml"));
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "SpendManagement.CondoTecManagementAPI.xml"));
             });
         }
     }

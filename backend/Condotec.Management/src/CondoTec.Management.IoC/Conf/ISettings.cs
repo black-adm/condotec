@@ -3,5 +3,6 @@
     public interface ISettings
     {
         public string? TokenAuth { get; }
+        public MongoSettings? MongoSettings { get; }
     }
 }
