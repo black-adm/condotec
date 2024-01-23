@@ -8,9 +8,7 @@ import { LoginFormModule } from './login-form/login-form.module';
 import { RegisterFormModule } from './register-form/register-form.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [ AppComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,

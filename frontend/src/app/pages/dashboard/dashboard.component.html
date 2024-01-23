@@ -1,0 +1,160 @@
+<div class="h-auto w-full flex">
+  <div class="w-52 h-screen border-r-2 border-light-gray">
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div class="flex-1">
+    <div class="pl-7">
+      <div class="flex justify-between items-center pt-12">
+        <div>
+          <h1 class="text-3xl font-bold text-black">
+            Dashboard
+          </h1>
+        </div>
+
+        <div class="flex justify-center items-center pr-8">
+          <div
+            class="inline-flex items-center justify-center rounded-full">
+            <button
+              type="button"
+              class="ml-4 hover:p-1 hover:bg-light-gray hover:rounded-full"
+              title="Buscar">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-search"><circle cx="11" cy="11" r="8" />
+                <path
+                  d="m21 21-4.3-4.3" />
+              </svg>
+            </button>
+
+            <input
+              type="search"
+              class="bg-transparent py-2 px-4 text-sm font-medium text-black outline-none placeholder:text-dark"
+              placeholder="Pesquisar" />
+          </div>
+
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <div class="flex justify-start items-center space-x-4">
+          <div
+            class="py-8 w-72 bg-gray-50 rounded-3xl hover:bg-white hover:border-4 hover:border-cyan-green">
+            <div
+              class="w-full flex flex-col items-center justify-start space-y-5 px-10">
+              <h4
+                class="inline-flex items-center gap-1 text-[13px] leading-4 font-semibold text-dark">
+                Encomendas
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-package mb-1"><path
+                    d="m7.5 4.27 9 5.15" /><path
+                    d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" /><path
+                    d="m3.3 7 8.7 5 8.7-5" />
+                  <path d="M12 22V12" />
+                </svg>
+              </h4>
+              <hr class="border-[3px] border-light-blue w-12">
+              <span class="text-dark text-5xl font-medium">
+                24
+              </span>
+            </div>
+          </div>
+
+          <div
+            class="py-8 w-72 bg-gray-50 rounded-3xl hover:bg-white hover:border-4 hover:border-cyan-green">
+            <div
+              class="w-full flex flex-col items-center justify-start space-y-5 px-10">
+              <h4
+                class="inline-flex items-center gap-1 text-[13px] leading-4 font-semibold text-dark">
+                Mensagens
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                  class="mb-1"
+                  fill="#1a1a1a" viewBox="0 0 256 256">
+                  <path
+                    d="M187.3,159.06A36.09,36.09,0,0,1,152,188a84.09,84.09,0,0,1-84-84A36.09,36.09,0,0,1,96.94,68.7,12,12,0,0,1,110,75.1l11.48,23a12,12,0,0,1-.75,12l-8.52,12.78a44.56,44.56,0,0,0,20.91,20.91l12.78-8.52a12,12,0,0,1,12-.75l23,11.48A12,12,0,0,1,187.3,159.06ZM236,128A108,108,0,0,1,78.77,224.15L46.34,235A20,20,0,0,1,21,209.66l10.81-32.43A108,108,0,1,1,236,128Zm-24,0A84,84,0,1,0,55.27,170.06a12,12,0,0,1,1,9.81l-9.93,29.79,29.79-9.93a12.1,12.1,0,0,1,3.8-.62,12,12,0,0,1,6,1.62A84,84,0,0,0,212,128Z">
+                  </path>
+                </svg>
+              </h4>
+              <hr class="border-[3px] border-light-blue w-16">
+              <span class="text-dark text-5xl font-medium">
+                27
+              </span>
+            </div>
+          </div>
+
+          <div
+            class="py-8 w-72 bg-gray-50 rounded-3xl hover:bg-white hover:border-4 hover:border-cyan-green">
+            <div
+              class="w-full flex flex-col items-center justify-start space-y-5 px-10">
+              <h4
+                class="inline-flex items-center gap-1 text-[13px] leading-4 font-semibold text-dark">
+                Visitantes
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-users mb-1"><path
+                    d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle
+                    cx="9"
+                    cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </h4>
+              <hr class="border-[3px] border-light-blue w-7">
+              <span class="text-dark text-5xl font-medium">
+                9
+              </span>
+            </div>
+          </div>
+
+          <div
+            class="py-8 w-72 bg-gray-50 rounded-3xl hover:bg-white hover:border-4 hover:border-cyan-green">
+            <div
+              class="w-full flex flex-col items-center justify-start space-y-5 px-10">
+              <h4
+                class="inline-flex items-center gap-1 text-[13px] leading-4 font-semibold text-dark">
+                Alertas
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-alert-circle mb-1"><circle cx="12"
+                    cy="12"
+                    r="10" /><line x1="12" x2="12" y1="8" y2="12" /><line
+                    x1="12" x2="12.01" y1="16" y2="16" /></svg>
+              </h4>
+              <hr class="border-[3px] border-light-blue w-3">
+              <span class="text-dark text-5xl font-medium">
+                2
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="h-auto w-full mt-16 bg-light-gray">
+      </div>
+    </div>
+
+    <div class="w-full mt-20">
+      <h3 class="pl-7 text-xl font-semibold text-dark">
+        Encomendas cadastradas
+      </h3>
+      <app-orders-table></app-orders-table>
+    </div>
+
+    <div>
+      <footer class="pt-12 pb-16 flex justify-center items-center">
+        <small class="text-xs font-medium text-gray-400">
+          Condotec Management © 2024.
+          Todos os direitos reservados.
+        </small>
+      </footer>
+    </div>
+  </div>
+</div>
