@@ -1,8 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { RegisterFormComponent } from '../register-form.component';
-import { RegisterService, SignUpData } from 'src/app/services/register.service';
 import { Router } from '@angular/router';
+
+import { RegisterFormComponent } from '../register-form.component';
+import { RegisterService, RegisterDataProps } from 'src/app/services/register.service';
+import { StepperService } from 'src/app/services/stepper.service';
 
 @Component({
   selector: 'app-credentials-form',
@@ -17,9 +19,11 @@ export class CredentialsFormComponent implements OnInit {
   private registerForm = inject(RegisterFormComponent)
   private registerService = inject(RegisterService)
   private router = inject(Router)
+  private stepperService = inject(StepperService)
 
   ngOnInit() {
     this.form = this.registerForm.getCredentials()
+    this.stepperService.setCurrentStep(1);
   }
 
   toggleShowPassword() {
@@ -29,16 +33,18 @@ export class CredentialsFormComponent implements OnInit {
   }
 
   onSubmit() {
-    const register: SignUpData = this.form.getRawValue()
+    const register: RegisterDataProps = this.form.getRawValue();
 
     this.registerService.signUp(register).subscribe({
-      next: () => {
-        this.router.navigateByUrl('../dados-pessoais')
+      next: (response) => {
+        console.log('Token de acesso:', response.data.accessToken);
+        this.router.navigateByUrl('../dados-pessoais');
       },
-      error: (e) => {
-        console.log(e)
-        this.error = 'Erro ao realizar cadastro de usuário!'
+      error: (error) => {
+        console.error('Erro durante o cadastro:', error);
+        this.error = 'Erro ao realizar cadastro de usuário!';
       }
-    })
+    });
   }
+
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { RegisterFormComponent } from '../register-form.component';
+import { StepperService } from 'src/app/services/stepper.service';
 
 interface AddressProps {
   postalCode: string
@@ -23,17 +24,19 @@ export class AddressFormComponent implements OnInit {
 
   constructor(
     private registerForm: RegisterFormComponent,
-    private http: HttpClient
+    private http: HttpClient,
+    private stepperService: StepperService
   ) { }
 
   ngOnInit() {
     this.form = this.registerForm.getAddress()
+    this.stepperService.setCurrentStep(3);
   }
 
-  searchPostalCode(event: any) {
+  async searchPostalCode(event: any) {
     const postalCode = (event.target as HTMLInputElement)?.value.replace("-", "");
 
-    this.http.get<AddressProps>(`${url}/${postalCode}/json`)
+    await this.http.get<AddressProps>(`${url}/${postalCode}/json`)
       .subscribe(
         (data: any) => {
           const result: AddressProps = {
@@ -50,6 +53,9 @@ export class AddressFormComponent implements OnInit {
           this.form.controls['district'].setValue(result.district);
           this.form.controls['complement'].setValue(result.complement);
           this.form.controls['city'].setValue(result.city);
+        },
+        (erro?: boolean) => {
+          console.error('Erro na busca do CEP:', erro);
         }
       )
   }
