@@ -4,9 +4,9 @@ import { JwtPayload, jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, map } from 'rxjs';
 
 export const STORAGE_KEY = 'ACCESS_TOKEN'
-export const API_URL = 'http://172.26.0.2:8080/api/v1'
+export const API_URL = 'http://172.26.0.3:8080/api/v1'
 
-export interface SignInData {
+export interface ResponseLoginProps {
   data: {
     accessToken: string,
     id: string,
@@ -18,8 +18,8 @@ export interface SignInData {
 })
 export class AuthService {
 
-  private colaborator: BehaviorSubject<SignInData | null | undefined>
-    = new BehaviorSubject<SignInData | null | undefined>(undefined)
+  private colaborator: BehaviorSubject<ResponseLoginProps | null | undefined>
+    = new BehaviorSubject<ResponseLoginProps | null | undefined>(undefined)
 
   private http = inject(HttpClient)
 
@@ -28,7 +28,7 @@ export class AuthService {
 
     if(token) {
       const decodedToken = jwtDecode<JwtPayload>(token)
-      const res: SignInData = {
+      const res: ResponseLoginProps = {
         data : {
           accessToken: token,
           id: decodedToken.sub!
@@ -48,7 +48,7 @@ export class AuthService {
           localStorage.setItem(STORAGE_KEY, response.data.accessToken)
 
           const decoded = jwtDecode<JwtPayload>(response.data.accessToken);
-            const result: SignInData = {
+            const result: ResponseLoginProps = {
               data: {
                 accessToken: response.accessToken,
                 id: decoded.sub!

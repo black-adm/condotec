@@ -7,7 +7,6 @@ import { PersonalProps } from './personal-data-form/personal-data-form.component
   templateUrl: './register-form.component.html',
 })
 export class RegisterFormComponent {
-
   private formBuilderService = inject(FormBuilder)
 
   protected form = this.formBuilderService.group({

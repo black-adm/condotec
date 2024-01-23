@@ -2,10 +2,10 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 
-import { API_URL, STORAGE_KEY, SignInData } from './auth.service';
+import { API_URL, STORAGE_KEY, ResponseLoginProps } from './auth.service';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 
-export interface SignUpData {
+export interface RegisterDataProps {
   email: string;
   username: string;
   password: string;
@@ -17,12 +17,12 @@ export interface SignUpData {
 })
 export class RegisterService {
 
-  private colaborator: BehaviorSubject<SignInData | null | undefined> =
-    new BehaviorSubject<SignInData | null | undefined>(undefined);
+  private colaborator: BehaviorSubject<ResponseLoginProps | null | undefined> =
+    new BehaviorSubject<ResponseLoginProps | null | undefined>(undefined);
 
   private http = inject(HttpClient)
 
-  signUp(register: SignUpData): Observable<SignInData> {
+  signUp(register: RegisterDataProps): Observable<ResponseLoginProps> {
     return this.http.post(`${API_URL}/signUp`, register)
       .pipe(
         map((response: any) => {
@@ -30,7 +30,7 @@ export class RegisterService {
           localStorage.setItem(STORAGE_KEY, response.data.accessToken)
 
           const decoded = jwtDecode<JwtPayload>(response.data.accessToken);
-          const result: SignInData = {
+          const result: ResponseLoginProps = {
             data: {
               accessToken: response.data.accessToken,
               id: decoded.sub!,
@@ -41,4 +41,5 @@ export class RegisterService {
         })
       )
   }
+
 }
