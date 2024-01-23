@@ -21,7 +21,8 @@ module.exports = {
         "dark-blue": "#0C1B33",
       },
       backgroundImage: {
-        "grid": "url('https://coisasdadoris.com.br/cdn/shop/products/papel_grid_pontinhos_cinza_700x_crop_center.jpg?v=1599531053')",
+        "condominium": "url('src/assets/images/condominium.png')",
+        "grid": "url('src/assets/images/grid.png')",
       }
     },
   },
