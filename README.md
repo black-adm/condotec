@@ -4,7 +4,7 @@
   <img src="/images/condotec-transparent.png" alt="logo" width="240px" />
 </div>
 <div align="center">
-  <img src="https://skillicons.dev/icons?i=typescript,angular,tailwindcss,jest,cs,dotnet,mongodb,docker" />
+  <img src="https://skillicons.dev/icons?i=typescript,angular,tailwindcss,cs,dotnet,mongodb,docker" />
 </div>
 
 ## Entidades da aplicação
@@ -15,6 +15,8 @@
 
 ## Sobre o projeto
 > [!NOTE]
-> Esta aplicação se encontra em fase de desenvolvimento :hourglass_flowing_sand: :hammer_and_wrench:	
+> Esta aplicação se encontra em fase de desenvolvimento :hourglass_flowing_sand: :hammer_and_wrench:
+>
+> Rotas no front-end - `/login`, `/dashboard`, `cadastrar/credenciais-de-acesso`, `cadastrar/dados-pessoais`, `cadastrar-endereço`.
 
 
