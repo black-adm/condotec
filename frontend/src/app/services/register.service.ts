@@ -1,9 +1,9 @@
-import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 
-import { API_URL, STORAGE_KEY, ResponseLoginProps } from './auth.service';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
+import { API_URL, AuthenticationProps, STORAGE_KEY } from './auth.service';
 
 export interface RegisterDataProps {
   email: string;
@@ -17,29 +17,32 @@ export interface RegisterDataProps {
 })
 export class RegisterService {
 
-  private colaborator: BehaviorSubject<ResponseLoginProps | null | undefined> =
-    new BehaviorSubject<ResponseLoginProps | null | undefined>(undefined);
+  private colaborator: BehaviorSubject<AuthenticationProps | null | undefined> =
+    new BehaviorSubject<AuthenticationProps | null | undefined>(undefined);
 
   private http = inject(HttpClient)
 
-  signUp(register: RegisterDataProps): Observable<ResponseLoginProps> {
+  signUp(register: RegisterDataProps): Observable<AuthenticationProps> {
     return this.http.post(`${API_URL}/signUp`, register)
       .pipe(
         map((response: any) => {
-          console.log('API response :', response)
-          localStorage.setItem(STORAGE_KEY, response.data.accessToken)
+          try {
+            console.log('API response :', response)
+            localStorage.setItem(STORAGE_KEY, response.data.accessToken)
 
-          const decoded = jwtDecode<JwtPayload>(response.data.accessToken);
-          const result: ResponseLoginProps = {
-            data: {
-              accessToken: response.data.accessToken,
-              id: decoded.sub!,
-            },
+            const decoded = jwtDecode<JwtPayload>(response.data.accessToken);
+            const result: AuthenticationProps = {
+              data: {
+                accessToken: response.data.accessToken,
+                id: decoded.sub!,
+              },
+            }
+            this.colaborator.next(result)
+            return result
+          } catch (error) {
+            throw new Error('Erro ao registrar usuário!')
           }
-          this.colaborator.next(result)
-          return result
         })
       )
   }
-
 }

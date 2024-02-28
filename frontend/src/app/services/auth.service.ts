@@ -6,7 +6,7 @@ import { BehaviorSubject, map } from 'rxjs';
 export const STORAGE_KEY = 'ACCESS_TOKEN'
 export const API_URL = 'http://172.26.0.3:8080/api/v1'
 
-export interface ResponseLoginProps {
+export interface AuthenticationProps {
   data: {
     accessToken: string,
     id: string,
@@ -18,8 +18,8 @@ export interface ResponseLoginProps {
 })
 export class AuthService {
 
-  private colaborator: BehaviorSubject<ResponseLoginProps | null | undefined>
-    = new BehaviorSubject<ResponseLoginProps | null | undefined>(undefined)
+  private colaborator: BehaviorSubject<AuthenticationProps | null | undefined>
+    = new BehaviorSubject<AuthenticationProps | null | undefined>(undefined)
 
   private http = inject(HttpClient)
 
@@ -28,7 +28,7 @@ export class AuthService {
 
     if(token) {
       const decodedToken = jwtDecode<JwtPayload>(token)
-      const res: ResponseLoginProps = {
+      const res: AuthenticationProps = {
         data : {
           accessToken: token,
           id: decodedToken.sub!
@@ -48,7 +48,7 @@ export class AuthService {
           localStorage.setItem(STORAGE_KEY, response.data.accessToken)
 
           const decoded = jwtDecode<JwtPayload>(response.data.accessToken);
-            const result: ResponseLoginProps = {
+            const result: AuthenticationProps = {
               data: {
                 accessToken: response.accessToken,
                 id: decoded.sub!

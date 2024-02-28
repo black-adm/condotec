@@ -1,29 +1,30 @@
-<div class="hidden lg:flex lg:flex-col">
-  <div class="lg:w-auto lg:flex lg:flex-col lg:pl-10 xl:pl-20">
-    <h2 class="text-dark text-2xl xl:text-3xl font-extrabold">
+<div class="hidden lg:flex lg:flex-col lg:mx-auto">
+  <div class="w-full flex flex-col text-center pl-10">
+    <h2 class="text-dark text-left text-2xl xl:text-3xl font-extrabold">
       {{ stepDetails.title }}
     </h2>
 
-    <p class="mt-2 text-dark-gray text-sm xl:text-base">
+    <p class="pt-1 text-dark-gray text-sm">
       {{ stepDetails.description }}
     </p>
   </div>
 
   <div
-    class="lg:max-w-sm lg:flex lg:flex-col lg:items-center lg:justify-center lg:mt-20 lg:mb-12">
+    class="max-w-sm flex flex-col items-center pt-16 pb-16">
     <div
-      class="w-full flex flex-col items-center text-dark-blue text-[13px] leading-5 font-medium">
+      class="w-full flex flex-col items-center justify-center text-dark-blue text-[13px] leading-5 font-medium">
       <ol class="h-44">
-        <li *ngFor="let step of [1]" class="flex mb-12">
+        <li *ngFor="let step of [1]" class="flex pb-12">
           <div
-            class="inline-flex items-center justify-center"
+            class="inline-flex items-center justify-center group"
             [ngClass]="{ 'animate-bounce': currentStep === step }">
             <span
               class="relative flex items-center justify-center w-8 h-8"
+              style="border-radius: 100%;"
               [ngClass]="{
-                'bg-cyan-green rounded-full': currentStep === step,
-                'bg-light-gray rounded-full': currentStep !== step,
-                'border-4 border-cyan-green rounded-full': currentStep !== step
+                'bg-cyan-green': currentStep === step,
+                'bg-light-gray': currentStep !== step,
+                'border-4 border-cyan-green': currentStep !== step
               }">
               <svg
                 class="lucide lucide-lock w-3 h-3 text-dark"
@@ -53,10 +54,11 @@
             [ngClass]="{ 'animate-bounce': currentStep === step }">
             <span
               class="relative flex items-center justify-center w-8 h-8"
+              style="border-radius: 100%;"
               [ngClass]="{
-                'bg-cyan-green rounded-full': currentStep === step,
+                'bg-cyan-green': currentStep === step,
                 'bg-light-gray': currentStep !== step,
-                'rounded-full border-4 border-cyan-green': currentStep !== step
+                'border-4 border-cyan-green': currentStep !== step
               }">
               <svg
                 class="lucide lucide-user-round-check h-3 w-3 text-dark"
@@ -85,6 +87,7 @@
             [ngClass]="{ 'animate-bounce': currentStep === step }">
             <span
               class="relative flex items-center justify-center w-8 h-8"
+              style="border-radius: 100%;"
               [ngClass]="{
                 'bg-cyan-green rounded-full': currentStep === step,
                 'bg-light-gray rounded-full': currentStep !== step,
@@ -114,7 +117,7 @@
       </ol>
     </div>
 
-    <footer class="mt-20 flex justify-center items-center">
+    <footer class="pt-20 flex justify-center items-center">
       <small class="text-xs font-medium text-gray-400">
         Condotec Management © 2024. <br />
         Todos os direitos reservados.

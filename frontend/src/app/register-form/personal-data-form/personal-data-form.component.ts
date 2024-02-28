@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { RegisterFormComponent } from '../register-form.component';
 import { StepperService } from 'src/app/services/stepper.service';
+import { RegisterFormComponent } from '../register-form.component';
 
 export interface PersonalProps {
   firstName: string,
@@ -16,7 +16,6 @@ export interface PersonalProps {
 })
 export class PersonalDataFormComponent implements OnInit {
   form!: FormGroup
-
   title = 'Dados de pessoa fisíca'
 
   private registerForm = inject(RegisterFormComponent)

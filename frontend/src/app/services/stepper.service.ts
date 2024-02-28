@@ -9,9 +9,9 @@ export class StepperService {
   public currentStep$: Observable<number> = this.currentStepSubject.asObservable()
 
   private stepDetails: { title: string; description: string }[] = [
-    { title: 'Passo 1', description: 'Vamos criar suas credenciais de acesso ?' },
-    { title: 'Passo 2', description: 'Agora, preencha seus dados pessoais.' },
-    { title: 'Passo 3', description: 'Para finalizar, informe o seu endereço pessoal.' },
+    { title: 'Passo 1', description: 'Crie suas credenciais de acesso.' },
+    { title: 'Passo 2', description: 'Preencha seus dados pessoais.' },
+    { title: 'Passo 3', description: 'Informe o seu endereço pessoal.' },
   ];
 
   getStepDetails(step: number): { title: string; description: string } {
